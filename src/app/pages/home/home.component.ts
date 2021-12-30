@@ -8,15 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   numvar: number = 10;
-  bigint: bigint = 9007199254740991n;
   json: { oid?: string, nombre?: string } = {};
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.bigint + BigInt(this.numvar))
-    this.json.oid = (this.bigint + BigInt(this.numvar)).toString();
-    this.json.nombre = "prueba";
+
   }
 
 }
