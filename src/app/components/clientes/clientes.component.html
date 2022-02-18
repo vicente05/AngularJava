@@ -3,7 +3,7 @@
     <div class="card-body text-primary">
         <h5 class="card-title">Listado de clientes</h5>
         <div class="my-2 text-left">
-            <button class="btn btn-primary" type="button" [routerLink]="['/clientes/form']" >Crear Cliente</button>
+            <button *ngIf="authServiceGetter.hasRole('ROLE_ADMIN')" class="btn btn-primary" type="button" [routerLink]="['/clientes/form']" >Crear Cliente</button>
         </div>
         <div *ngIf="clientes?.length == 0" class="alert alert-info">
             No hay registros en la base de datos!
@@ -12,18 +12,18 @@
         <table class="table table-bordered table-striped" *ngIf="clientes?.length > 0">
             <thead>
                 <tr>
-                    <th>avatar</th>
+                    <th *ngIf="authServiceGetter.hasRole('ROLE_USER')">avatar</th>
                     <th>nombre</th>
                     <th>apellidos</th>
                     <th>email</th>
                     <th>fecha</th>
-                    <th>editar</th>
-                    <th>eliminar</th>
+                    <th *ngIf="authServiceGetter.hasRole('ROLE_ADMIN')">editar</th>
+                    <th *ngIf="authServiceGetter.hasRole('ROLE_ADMIN')">eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let cliente of clientes">
-                    <td>
+                    <td *ngIf="authServiceGetter.hasRole('ROLE_USER')">
                         <img
                             *ngIf="cliente?.foto"
                             (click)="abrirModal(cliente)"
@@ -45,10 +45,10 @@
                     <td>{{cliente.apellido | uppercase}}</td>
                     <td>{{cliente.email}}</td>
                     <td>{{cliente.createAt | date: "EEEE dd, MMMM yyyy"}}</td>
-                    <td>
+                    <td *ngIf="authServiceGetter.hasRole('ROLE_ADMIN')">
                         <button class="btn btn-primary" type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]">editar</button>
                     </td>
-                    <td>
+                    <td *ngIf="authServiceGetter.hasRole('ROLE_ADMIN')">
                         <button class="btn btn-danger" type="button" name="eliminar" (click)="delete(cliente)">eliminar</button>
                     </td>
                 </tr>

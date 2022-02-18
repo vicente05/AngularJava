@@ -17,7 +17,7 @@
                                 <li class="list-group-item">{{cliente.createAt | date: "fullDate"}}</li>
                                 <li class="list-group-item">{{cliente.region.nombre}}</li>
                             </ul>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3" *ngIf="authServiceGetter.hasRole('ROLE_ADMIN')">
                                 <input
                                     (change)="seleccionarFoto($event)"
                                     type="file"
@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-sm">
                             <img
-                                *ngIf="cliente?.foto"
+                                *ngIf="cliente?.foto && authServiceGetter.hasRole('ROLE_ADMIN')"
                                 [src]="this.urlFoto + '/clientes/uploads/img/' + cliente.foto"
                                 [alt]="cliente.foto"
                                 class="img-thumbnail rounded"

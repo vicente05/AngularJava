@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from './detalle/modal.service';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
@@ -22,9 +23,13 @@ export class ClientesComponent implements OnInit {
     constructor(
         private clienteService: ClienteService,
         private activatedRoute: ActivatedRoute,
-        private modalService: ModalService
+        private modalService: ModalService,
+        private authService: AuthService
     ) { }
 
+    public get authServiceGetter(): AuthService {
+        return this.authService;
+    }
 
     ngOnInit(): void {
         this.activatedRoute.paramMap.subscribe( params => {
@@ -52,7 +57,7 @@ export class ClientesComponent implements OnInit {
         })
     }
 
-    delete(cliente: Clientes): void {
+    public delete(cliente: Clientes): void {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
               confirmButton: 'btn btn-success',
@@ -83,7 +88,7 @@ export class ClientesComponent implements OnInit {
         })
     }
 
-    abrirModal( cliente: Clientes) {
+    public abrirModal( cliente: Clientes) {
         this.clienteSeleccionado = cliente;
         this.modalService.abrirModal();
     }

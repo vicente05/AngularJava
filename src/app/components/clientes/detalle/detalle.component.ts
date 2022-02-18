@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { ModalService } from './modal.service';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'detalle-cliente',
@@ -22,7 +23,8 @@ export class DetalleComponent implements OnInit {
 
     constructor(
         private clienteService: ClienteService,
-        private modalService: ModalService
+        private modalService: ModalService,
+        private authService: AuthService
     ) { }
 
     ngOnInit(): void { }
@@ -35,6 +37,10 @@ export class DetalleComponent implements OnInit {
 
     get modalServiceProps(): boolean {
         return this.modalService.modal;
+    }
+
+    get authServiceGetter(): AuthService {
+        return this.authService;
     }
 
     //#endregion obtenerPropiedades

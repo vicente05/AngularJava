@@ -79,7 +79,7 @@ export class AuthService {
         sessionStorage.setItem('token', accesToken);
     }
 
-    private obtenerDatosToken(accessToken: string): any {
+    public obtenerDatosToken(accessToken: string): any {
         if (accessToken !== null) {
             return JSON.parse(atob(accessToken.split(".")[1]));
         }
@@ -92,6 +92,10 @@ export class AuthService {
             return true;
         }
         return false;
+    }
+
+    public hasRole(role: string): boolean {
+        return this.usuario.roles.includes(role);
     }
 
     public logout(): void {

@@ -4,6 +4,8 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { DirectivaComponent } from './components/directiva/directiva.component';
 import { FormComponent } from './components/clientes/form/form.component';
 import { LoginComponent } from './auth/login.component';
+import { AuthGuard } from './common/guards/auth.guard';
+import { RoleGuard } from './common/guards/role.guard';
 
 const routes: Routes = [
     {
@@ -25,11 +27,15 @@ const routes: Routes = [
     },
     {
         path: 'clientes/form',
-        component: FormComponent
+        component: FormComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { role: 'ROLE_ADMIN' }
     },
     {
         path: 'clientes/form/:id',
-        component: FormComponent
+        component: FormComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { role: 'ROLE_ADMIN' }
     },
     {
         path: 'login',
