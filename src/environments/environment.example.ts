@@ -6,8 +6,8 @@ export const environment = {
 	production: false,
 	apiRest: 'http://localhost:8080/api',
 	credencialesApi : {
-		username: "angularapp",
-		password: '12345'
+		username: "11",
+		password: '11'
 	}
 };
 

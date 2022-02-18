@@ -37,7 +37,7 @@
             "styles": [
                 "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
                 "src/styles.scss",
-              "src/assets/css/bootstrap.min.css"
+                "src/assets/css/bootstrap.min.css"
             ],
             "scripts": [
                 "src/assets/js/bootstrap.bundle.min.js"

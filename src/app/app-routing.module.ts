@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { DirectivaComponent } from './components/directiva/directiva.component';
 import { FormComponent } from './components/clientes/form/form.component';
-import { DetalleComponent } from './components/clientes/detalle/detalle.component';
+import { LoginComponent } from './auth/login.component';
 
 const routes: Routes = [
     {
@@ -30,6 +30,10 @@ const routes: Routes = [
     {
         path: 'clientes/form/:id',
         component: FormComponent
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     },
 ];
 
